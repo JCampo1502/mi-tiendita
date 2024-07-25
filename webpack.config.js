@@ -55,11 +55,11 @@ module.exports = {
                                 plugins:[
                                     autoprefixer
                                 ]
-                            }
+                            }                
                         }
                     },
                     {
-                        loader: 'sass-loader'
+                        loader:'sass-loader'
                     }
                 ]
             }
