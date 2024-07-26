@@ -5,22 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap w/ Webpack</title>
   </head>
-  <body>
-    <div class="container py-4 px-3 mx-auto">
-      <h1>Hello, Bootstrap and Webpack!</h1>
-      <button class="btn btn-primary">Primary button</button>
-      <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown link
-        </a>
+  <body class="p-2">
+    <header class="header container-lg">
+      <nav class="nav navbar sticky-top bg-body-tertiary ">
+        <h1 class="header__title text-danger fst-italic fw-bold">Tiendita</h1>
+        <button class="cart btn btn-primary  py-1 px-3 d-flex align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartModal" aria-controls="cartModal">
+          <i class="bi bi-cart2 text-white fs-4"></i>
+          <span class="badge text-bg-secondary cart__amount p-0 bg-primary fs-6 mx-1">15</span>
+        </button>
+        <div class="location dropdown-center mx-auto ">
+          <button class="location__btn btn btn-secondary dropdown-toggle w-100 mt-2 bg-white border-0 text-black fw-bold fs-6 d-flex align-items-baseline" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            México City Marriott
+          </button>
+          <ul class="location__menu dropdown-menu w-100">
+            <li class="location__item">
+              <span class="location__link dropdown-item">
+                México City Marriott
+              </span>
+            </li>
+            <li class="location__item">
+              <span class="location__link dropdown-item">
+                México City International
+              </span>
+            </li>
+            <li class="location__item">
+              <span class="location__link dropdown-item">
+                Mexico City Mexico
+              </span>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="main container-lg px-0">
+      <picture class="main__picture my-4 d-block mx-0">
+        <img src="" class="main__banner img-fluid " alt="banner">
+      </picture>
+      <section class="main__section mb-4 mt-2">
+        <h2 class="main__subtitle fw-bold mt-2 mb-3">Ofertas</h2>
+        <article class="main__article d-flex gap-2">
+          <div class="card col-7 border-0 position-relative">
+            <span class="card__discount badge text-bg-secondary position-absolute rounded-pill py-2 text-secondary">32% dto.</span>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWN5g9vUSIe__oKuucM1Yj_t2O4y7ZsWCZ8w&s" class="card-img-top my-2 mt-5" alt="lemon">
+            <div class="card-body px-1">
+              <p class="card-text m-0 mt-2 fw-bold d-flex fs-6 ">
+                <strong class="card__total">$26.82/kg</strong>
+                <s class="card__price text-black-50 ms-2">$39.9/kg</s>
+              </p>
+              <h5 class="card__name card-title fs-6 fw-normal mb-5">
+                Limon con semilla
+              </h5>
+              <button class="btn btn-lg btn-primary w-100 text-white fw-nor,al">Agregar</button>
+            </div>
+          </div>
+        </article>        
+      </section>
+
+      <section class="main__section mb-4 mt-2">
+        <h2 class="main__subtitle fw-bold mt-2 mb-3">Los más popular</h2>
+        <article class="main__article d-flex gap-2">
+          <div class="card col-7 border-0 position-relative">            
+            <img src="https://www.etiqueteando.com/wp-content/uploads/2020/08/E0150.jpg" class="card-img-top my-2 mt-5" alt="lemon">
+            <div class="card-body px-1">
+              <p class="card-text m-0 mt-2 fw-bold d-flex fs-6 ">
+                <strong class="card__total">$62.5g</strong>                
+              </p>
+              <h5 class="card__name card-title fs-6 fw-normal mb-5">
+                San Rafael pechuga de pavo
+              </h5>
+
+              <em class="card__units text-black-50 mb-4 d-block fw-normal fst-normal">250g($0.25gr)</em>
+              <button class="btn btn-lg btn-primary w-100 text-white fw-normal">Agregar</button>
+            </div>
+          </div>
+        </article>        
+      </section>
       
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
+    </main>
+    <aside>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="cartModal" aria-labelledby="cartModalLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="cartModalLabel">Offcanvas right</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          
+        </div>
       </div>
-      <i class="bi bi-wrench-adjustable-circle-fill"></i>
-    </div>
+    </aside>
   </body>
 </html>

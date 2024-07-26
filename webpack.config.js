@@ -2,6 +2,7 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
@@ -20,6 +21,14 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({template: './src/index.html'}),
         new MiniCssExtractPlugin({filename: './styles/[name].[contenthash].css'}),
+        new FaviconsWebpackPlugin({
+            logo: './src/assets/favicon.svg', // Ruta a tu archivo SVG
+            prefix: 'assets/icons/', // Carpeta donde se guardarán los archivos generados
+            emitStats: true,
+            statsFilename: 'iconstats.json',
+            persistentCache: true,
+            inject: true,
+        }),
         new CleanWebpackPlugin()
     ],
     module: {
@@ -30,13 +39,26 @@ module.exports = {
                 use:{
                     loader: 'babel-loader'
                 }
-            },         
+            },             
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                use: [
+                    {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'assets/images/',
+                        publicPath: 'assets/images/',
+                    },
+                    },
+                ],
+            },     
             {
                 mimetype: 'image/svg+xml',
                 scheme: 'data',
                 type:'asset/resource',
                 generator: {
-                    filename: 'icons/[hash].svg'
+                    filename: 'assets/icons/[hash].svg'
                 }
             },
             {

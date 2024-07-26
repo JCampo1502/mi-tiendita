@@ -1,0 +1,103 @@
+[
+    {
+        "id":"offer-1",
+        "name": "Limon con semilla",
+        "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWN5g9vUSIe__oKuucM1Yj_t2O4y7ZsWCZ8w&s",
+        "amount":1,
+        "unit-type":"kg",
+        "unit-price":39.9,
+        "discount":32,
+        "category":"offer"
+    },
+    {
+        "id":"offer-2",
+        "name": "Tomate",
+        "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4M1zYtLHvSMOhzcrxXtVZChlmBo3SspV32HQJQWhjKQkF-Yb_GZ-MaHsyvYsqNTDXDsg&usqp=CAU",
+        "amount":1,
+        "unit-type":"kg",
+        "unit-price":32.9,
+        "discount":32,
+        "category":"offer"
+    },
+    {
+        "id":"offer-3",
+        "name": "Aguacate Hass",
+        "image":"https://static.vecteezy.com/system/resources/previews/046/026/424/non_2x/close-up-of-fresh-avocado-organic-product-png.png",
+        "amount":1,
+        "unit-type":"kg",
+        "unit-price":69.9,
+        "discount":18,
+        "category":"offer"
+    },
+    {
+        "id":"offer-4",
+        "name": "Nopal limpio",
+        "image":"https://http2.mlstatic.com/D_NQ_NP_685340-MCO47650453683_092021-O.webp",
+        "amount":1,
+        "unit-type":"kg",
+        "unit-price":29.9,
+        "discount":13,
+        "category":"offer"
+    },
+    {
+        "id":"offer-5",
+        "name": "Tomate verde sin cascara",
+        "image":"https://www.tiendasverum.com/cdn/shop/products/37.png?v=1678483631",
+        "amount":1,
+        "unit-type":"kg",
+        "unit-price":24.9,
+        "discount":8,
+        "category":"offer"
+    },
+    {
+        "id":"popular-1",
+        "name": "San Rafael pechuga de pavo",
+        "image":"https://www.etiqueteando.com/wp-content/uploads/2020/08/E0150.jpg",
+        "amount":250,
+        "unit-type":"g",
+        "unit-price":62.5,
+        "discount":0,
+        "category":"popular"
+    },
+    {
+        "id":"popular-2",
+        "name": "Bimbo Pan Blanco Grande",
+        "image":"https://walmartcr.vtexassets.com/arquivos/ids/371861/Pan-Bimbo-Sandwich-Blaco-Xg-720gr-1-30675.jpg?v=638072446247870000",
+        "amount":680,
+        "unit-type":"g",
+        "unit-price":38.9,
+        "discount":0,
+        "category":"popular"
+    },
+    {
+        "id":"popular-3",
+        "name": "Mc Cormick Mayonesa",
+        "image":"https://www.mccormick.com/-/media/project/oneweb/mccormick-us/fy22-product-audit/size-alignment/00052100371603_a1c1_master.png?rev=c75fbba2dbed4f0bbbce28e01cb05530&vd=20220422T164230Z&extension=webp&hash=684D19CD20DD0E1F9E74A83475911A27",
+        "amount":507,
+        "unit-type":"g",
+        "unit-price":48.5,
+        "discount":0,
+        "category":"popular"
+    },
+    {
+        "id":"popular-4",
+        "name": "Colgate Pasta Dental Triple Familiar 2U",
+        "image":"https://www.ahorramas.com/dw/image/v2/BFNH_PRD/on/demandware.static/-/Sites-ahorramas-master/default/dwac3d1a8c/Assets/020467_C1C1/large/2/5/0/3/2503707b4da5c47bce6b927c8c1686f8d053db19_020467_C1C1.jpg?sh=450",
+        "amount":125,
+        "unit-type":"ml",
+        "unit-price":35.5,
+        "discount":0,
+        "category":"popular"
+    },
+    {
+        "id":"popular-5",
+        "name": "Huevos San Juan",
+        "image":"https://www.tiendasverum.com/cdn/shop/products/37.png?v=1678483631",
+        "amount":18,
+        "unit-type":"Und",
+        "unit-price":37.5,
+        "discount":0,
+        "category":"popular"
+    }
+    
+]

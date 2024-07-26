@@ -1,3 +1,39 @@
 // Import all of Bootstrap's CSS
+$danger: #FC462D;
+$primary: #0AC763;
+$secondary: #5E18BB;
+
 @import "bootstrap/scss/bootstrap";
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+
+.dropdown-toggle::after{
+    border-top: 0.5em solid $danger;
+    border-right: 0.5em solid transparent;
+    border-bottom: 0;
+    border-left: 0.5em solid transparent;
+}
+
+body{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.main{
+
+    &__banner {
+        height: 132px;
+    }
+
+    &__article{
+        overflow-x: auto;
+    }
+}
+
+.card{
+    &__discount{
+        background: #F0E3FE!important;
+    }
+}
