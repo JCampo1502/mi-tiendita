@@ -25,49 +25,12 @@
       <picture class="main__picture my-4 d-block mx-0">
         <img src="" class="main__banner img-fluid " alt="banner">
       </picture>
-      <section class="main__section shadow mb-5 mt-2 p-5">
-        <h2 class="main__subtitle fw-bold fs-4 mt-2 mb-3">Ofertas</h2>
-        <article class="main__article d-flex gap-2">
-          <div class="card border-0 position-relative">
-            <span class="card__discount badge text-bg-secondary position-absolute rounded-pill py-2 text-secondary">32% dto.</span>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWN5g9vUSIe__oKuucM1Yj_t2O4y7ZsWCZ8w&s" class="card-img-top my-2 mt-5" alt="lemon">
-            <div class="card-body px-1">
-              <p class="card-text m-0 mt-2 fw-bold d-flex fs-6 ">
-                <strong class="card__total">$26.82/kg</strong>
-                <s class="card__price text-black-50 ms-2">$39.9/kg</s>
-              </p>
-              <h5 class="card__name card-title fs-6 fw-normal mb-5">
-                Limon con semilla
-              </h5>
-              <button class="btn btn-lg btn-primary w-100 text-white fw-nor,al"  data-bs-toggle="modal" data-bs-target="#detailModal">Agregar</button>
-            </div>
-          </div>
-        </article>        
-      </section>
-
-      <section class="main__section shadow mb-4 mt-2 p-5">
-        <h2 class="main__subtitle fs-4 fw-bold mt-2 mb-3">Los más populares</h2>
-        <article class="main__article d-flex gap-2">
-          <div class="card border-0 position-relative">
-            <img src="https://www.etiqueteando.com/wp-content/uploads/2020/08/E0150.jpg" class="card-img-top my-2 mt-1 px-2" alt="lemon">
-            <div class="card-body px-1">
-              <p class="card-text m-0 mt-2 fw-bold d-flex fs-6 mb-1">
-                <strong class="card__total">$62.5g</strong>                
-              </p>
-              <h5 class="card__name card-title fs-6 fw-normal mb-4">
-                San Rafael pechuga de pavo
-              </h5>
-
-              <em class="card__units text-black-50 mb-2 d-block fw-normal fst-normal">250g($0.25gr)</em>
-              <button class="btn btn-lg btn-primary w-100 text-white fw-normal" data-bs-toggle="modal" data-bs-target="#detailModal">Agregar</button>
-            </div>
-          </div>
-        </article>        
-      </section>
+      <!-- OFFERS -->
       
     </main>
     <aside>
-      
+      <!-- SIDE BARS -->
+
       <!-- CART -->
       <div class="offcanvas offcanvas-end" tabindex="-1" id="cartModal" aria-labelledby="cartModalLabel">
         <div class="offcanvas-header py-4 shadow-sm">
@@ -88,25 +51,10 @@
                 Agregar productos
               </button> 
           </div>
-          <div id="cart">
-            <div class="card w-100 px-2 shadow-none border border-0 border-bottom rounded-0 d-flex flex-row">
-              <div class="card-body px-1 col-9 d-flex flex-wrap align-items-center">
-                <div class="card__content col-8 d-flex flex-wrap align-items-center justify-content-start align-content-center">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWN5g9vUSIe__oKuucM1Yj_t2O4y7ZsWCZ8w&s" class="col-4" alt="card image">
-                  <div class="card__detail ms-3">
-                    <h5 class="card-title col-8 fs-6 ps-2 fw-normal">Aguacate Hass</h5>
-                    <strong class="card-text col-8 ps-2">$17.48</strong>  
-                  </div>    
-                </div>
-
-
-                <div class="card__actions col-4 d-flex align-items-center justify-content-evenly fw-bold fs-6">
-                  <i class="bi bi-dash-lg"></i>
-                  <strong class="card__unit">250g</strong>
-                  <i class="bi bi-plus-lg"></i>
-                </div>
-              </div>
-            </div>
+          <!-- Mini Cards -->
+          <div id="cart" class="card__conteiner card__container--mini">
+            <!-- Cards -->
+            
           </div>
           <div class="pay d-flex flex-column flex-lg-row justify-content-between mt-3 position-absolute bottom-0 start-0 w-100 p-3 p-lg-4 border-top bg-white align-items-center">
             <button class="pay__clear btn text-black-50 mb-2">
@@ -200,6 +148,8 @@
       
 
       <!-- Modal -->
+
+      <!-- Peyment Modal -->
       <div class="modal fade  " id="peymentModal" tabindex="-1" aria-labelledby="peymentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content ">
@@ -213,7 +163,7 @@
           </div>
         </div>
       </div>
-
+      <!-- Location Modal -->
       <div class="modal fade  " id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content px-3 pt-4 pb-4">
@@ -251,6 +201,7 @@
         </div>
       </div>
 
+      <!-- Show Detail Modal -->
       <div class="modal fade mx-auto" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content p-4">
@@ -259,86 +210,9 @@
                 <i class="bi bi-x-lg position-absolute top-50 start-50 translate-middle fs-6"></i>
               </button>
             </div >
-            <div class="modal-body d-lg-flex justify-content-between px-3">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWN5g9vUSIe__oKuucM1Yj_t2O4y7ZsWCZ8w&s" class="card-img-top my-2 card__img--detail" alt="lemon">
-              <div class="card__detail col-lg-5 align-items-start d-lg-flex flex-column justify-content-center">
-                <h3 class="mb-2">                
-                  <strong class="fw-bolder d-block my-2 fs-2">Aguacate Hass</strong>
-                  <span class="ms-2">$69.9/kg</span>
-                </h3>
-                <small class="mt-4 d-block fs-6 fst-normal fw-light">Precios con IVA incluido</small>
-                <p class="lh-sm mt-2 fs-6">
-                  Peso aproximado por pieza, puede variar de acuerdo al peso real.
-                </p>
-                <form class="flex-wrap d-flex align-items-center justify-content-between pt-4"> 
-                  <div class=" border-1 py-1 mb-1 px-0">
-                    <label for="ripeness" class="form-label fw-bold">
-                      Selecciona la madurez que deseas
-                    </label>
-                    <select class="form-select" id="ripeness">
-                      <option value="0">Por elegir</option>
-                      <option value="Maduro">Maduro (Para hoy)</option>
-                      <option value="Normal">Normal (3-5 días)</option>
-                      <option value="Verde">Verde 7 días</option>
-                    </select> 
-                  </div> 
-                  <div class="card__actions col-5 d-flex align-items-center justify-content-between px-3 fw-bold fs-6 shadow-sm my-1 py-3 ">
-                    <i class="bi bi-dash-lg"></i>
-                    <strong class="card__unit">250g</strong>
-                    <i class="bi bi-plus-lg"></i>
-                  </div>
-                  <button class="btn btn-primary col-6 text-white" type="button">Agregar</button>
-                </form>
-                
-              </div>
-            </div>
-            <div class="modal-footer border-0 card__related mt-3 mt-2  align-items-start flex-column">
-              <h2 class="main__subtitle fw-bold fs-5 text-end mt-2 mb-3 text-start">Productos relacionados</h2>
-              <article class="main__article d-flex gap-4">
-                <div class="card border-0 position-relative">
-                  <span class="card__discount badge text-bg-secondary position-absolute rounded-pill py-2 text-secondary">32% dto.</span>
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWN5g9vUSIe__oKuucM1Yj_t2O4y7ZsWCZ8w&s" class="card-img-top my-2 mt-5" alt="lemon">
-                  <div class="card-body px-1">
-                    <p class="card-text m-0 mt-2 fw-bold d-flex fs-6 ">
-                      <strong class="card__total">$26.82/kg</strong>
-                      <s class="card__price text-black-50 ms-2">$39.9/kg</s>
-                    </p>
-                    <h5 class="card__name card-title fs-6 fw-normal mb-5">
-                      Limon con semilla
-                    </h5>
-                    <button class="btn btn-lg btn-primary w-100 text-white fw-nor,al">Agregar</button>
-                  </div>
-                </div> 
-                <div class="card border-0 position-relative">
-                  <span class="card__discount badge text-bg-secondary position-absolute rounded-pill py-2 text-secondary">32% dto.</span>
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWN5g9vUSIe__oKuucM1Yj_t2O4y7ZsWCZ8w&s" class="card-img-top my-2 mt-5" alt="lemon">
-                  <div class="card-body px-1">
-                    <p class="card-text m-0 mt-2 fw-bold d-flex fs-6 ">
-                      <strong class="card__total">$26.82/kg</strong>
-                      <s class="card__price text-black-50 ms-2">$39.9/kg</s>
-                    </p>
-                    <h5 class="card__name card-title fs-6 fw-normal mb-5">
-                      Limon con semilla
-                    </h5>
-                    <button class="btn btn-lg btn-primary w-100 text-white fw-nor,al">Agregar</button>
-                  </div>
-                </div> 
-                <div class="card border-0 position-relative">
-                  <span class="card__discount badge text-bg-secondary position-absolute rounded-pill py-2 text-secondary">32% dto.</span>
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWN5g9vUSIe__oKuucM1Yj_t2O4y7ZsWCZ8w&s" class="card-img-top my-2 mt-5" alt="lemon">
-                  <div class="card-body px-1">
-                    <p class="card-text m-0 mt-2 fw-bold d-flex fs-6 ">
-                      <strong class="card__total">$26.82/kg</strong>
-                      <s class="card__price text-black-50 ms-2">$39.9/kg</s>
-                    </p>
-                    <h5 class="card__name card-title fs-6 fw-normal mb-5">
-                      Limon con semilla
-                    </h5>
-                    <button class="btn btn-lg btn-primary w-100 text-white fw-nor,al">Agregar</button>
-                  </div>
-                </div>              
-              </article>  
-            </div>
+            <div id="detail__modal" class="modal-body ">
+              
+            </div>           
           </div>
         </div>
       </div>

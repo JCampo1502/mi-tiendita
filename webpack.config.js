@@ -8,9 +8,15 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/app/main.js',
+    entry: {
+        app:[
+            '@babel/polyfill',
+            './src/app/index.js'
+        ],
+        vendor: './src/app/vendor.js'
+    },
     output: {
-        filename:'./script/main.js',
+        filename: "./script/[name].[contenthash].js",
         path: path.resolve(__dirname,'dist')
     },
     devServer: {
@@ -37,7 +43,18 @@ module.exports = {
                 test:/\.js$/,
                 exclude:'/node_modules/',
                 use:{
-                    loader: 'babel-loader'
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                          [
+                            '@babel/preset-env',
+                            {
+                              useBuiltIns: 'entry',
+                              corejs: 3,
+                            },
+                          ],
+                        ],
+                    },
                 }
             },             
             {

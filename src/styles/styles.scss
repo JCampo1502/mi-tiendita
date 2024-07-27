@@ -43,7 +43,7 @@ body{
     }
 
     &-img-top{
-        height: 194px;
+        height: 194px;      
         object-fit: fill;
     }
 }
@@ -68,13 +68,27 @@ body{
     font-weight:bold !important
 }
 
-main,aside{
-    .main__article{
+main,#detailModal{
+    .card__section{
+        /* shadow mb-5 mt-2 p-5 */
+        margin-bottom: calc(1rem * 3);
+        margin-top: calc(1rem *.5);
+        padding: calc(1rem * 3);
+        box-shadow: 0 .5rem 1rem rgba(#000, .15);
+    }
+    .card__container{
         width: 100%;
         overflow-x: auto;
+        display: flex;
+        justify-content: space-evenly;
         .card{
             min-width: 164px;
-            max-width: 192px;        
+            max-width: 192px;    
+            display: flex;
+            gap: calc(1rem * .5);
+            &__img {
+                width: 192px;
+            }
         }
 
     }
@@ -134,7 +148,7 @@ main,aside{
     #paymentOffcanvas{
         width: 100%;
         .offcanvas-body{
-            #cart{
+            .card__container{
                 max-height: 400px;
                 overflow-y: auto;
             }
