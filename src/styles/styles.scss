@@ -33,7 +33,116 @@ body{
 }
 
 .card{
+    max-height: 426px;
     &__discount{
         background: #F0E3FE!important;
+    }
+
+    &-img-top{
+        height: 194px;
+        object-fit: fill;
+    }
+}
+
+.btn-close{
+    opacity: 1;    
+}
+
+.offcanvas{
+    background: #F1F1EF;
+
+    &-header{
+        background: #fff;
+    }
+}
+
+.bi-chevron-down::before, 
+.bi-plus-lg::before,
+.bi-dash-lg::before,
+.bi-chevron-left::before
+{
+    font-weight:bold !important
+}
+
+main,aside{
+    .main__article{
+        width: 100%;
+        overflow-x: auto;
+        .card{
+            min-width: 164px;
+            max-width: 192px;        
+        }
+
+    }
+    
+}
+
+@media (min-width: 768px){
+    .main__section{                
+        border-radius: .5rem;
+    }
+
+    .main__picture{
+        width: 100%;
+    }
+
+    .main__banner{
+        width: 100%;
+        height: 250px;
+        margin-block: 1.2rem;
+    }
+
+    .navbar {
+        display: flex;
+        position: relative;
+    }
+
+    .cart.btn{
+        order: 1;
+    }
+
+    .dropdown-center{
+        position: absolute;
+        right: 11.5%;        
+        border-right: 1px solid #000;        
+    }
+
+    
+}
+
+@media (min-width: 992px){
+    #detailModal{
+        width: 100%;           
+        justify-content: center;
+        .modal-dialog{     
+            width: auto;       
+            max-width: 992px;
+        }
+    }
+
+    #paymentOffcanvas{
+        width: 100%;
+        .offcanvas-body{
+            #cart{
+                max-height: 400px;
+                overflow-y: auto;
+            }
+        }
+        .offcanvas-header{
+            background: #F1F1EF;
+        }
+    }
+
+    
+
+    .card__img--detail{
+        height: 375px;
+        max-width: 472px;
+    }
+
+    #locationModal{
+        .modal-dialog{
+            max-width: 703px;
+        }
     }
 }
