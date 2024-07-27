@@ -6,6 +6,10 @@ $secondary: #5E18BB;
 @import "bootstrap/scss/bootstrap";
 @import '~bootstrap-icons/font/bootstrap-icons.css';
 
+*{
+    user-select: none;
+}
+
 .dropdown-toggle::after{
     border-top: 0.5em solid $danger;
     border-right: 0.5em solid transparent;
@@ -75,6 +79,13 @@ main,aside{
 
     }
     
+}
+
+@media (max-width: 768px){
+    .btn-close{
+        scale: 1.5;
+
+    }
 }
 
 @media (min-width: 768px){
