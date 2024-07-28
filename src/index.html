@@ -14,8 +14,8 @@
           <span class="badge text-bg-secondary cart__amount p-0 bg-primary fs-6 mx-1">15</span>
         </button>
         <div class="location dropdown-center mx-auto ">
-          <button type="button" class="location__city location__btn btn btn-secondary w-100 mt-2 bg-white border-0 text-black fw-bold fs-6 d-flex align-items-baseline" data-bs-toggle="modal" data-bs-target="#locationModal">
-            México City Marriott
+          <button type="button" class=" location__btn btn btn-secondary w-100 mt-2 bg-white border-0 text-black fw-bold fs-6 d-flex align-items-baseline" data-bs-toggle="modal" data-bs-target="#locationModal">
+            <span class="location__city"></span>
             <i class="bi bi-chevron-down mx-2 text-danger fw-bold fs-5"></i>
           </button>          
         </div>
@@ -34,8 +34,8 @@
       <!-- CART -->
       <div class="offcanvas offcanvas-end" tabindex="-1" id="cartModal" aria-labelledby="cartModalLabel">
         <div class="offcanvas-header py-4 shadow-sm">
-          <h5 class="offcanvas-title fs-6 row" id="cartModalLabel">
-            <em class="fst-normal text-black-50 text-nowrap col-5">Entregar en:</em><strong class="text-truncate col-6 px-0 location__city">Mexico City Marriott...</strong>
+          <h5 class="offcanvas-title fs-6 d-flex" id="cartModalLabel">
+            <em class="fst-normal text-black-50 text-nowrap">Entregar en:</em><strong class="text-truncate col-6 px-0 location__city ps-2"></strong>
           </h5>
           <button type="button" class="btn-close rounded-circle p-2 bg-dark position-relative text-white" data-bs-dismiss="offcanvas" aria-label="Close">
             <i class="bi bi-x-lg position-absolute top-50 start-50 translate-middle fs-6"></i>
@@ -179,6 +179,7 @@
                     <i class="bi bi-geo-alt"></i>
                   </label>
                   <select class="form-select border-0" id="location">
+                      <option value="México City Marriott">México City Marriott</option>
                       <option value="San Francisco">San Francisco</option>
                       <option value="New York">New York</option>
                       <option value="Seattle">Seattle</option>
