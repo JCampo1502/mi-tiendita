@@ -1,12 +1,12 @@
 /* Retorna la plantilla de una tarjeta regular. */
-export const regularCardComponent = ({
+export const regularCardTemplate = ({
     id,
     name,
     image,
     value,
     type,
     price
-})=>{
+},localProduct)=>{    
     const totalPerUnit = (price/value).toFixed(1);
     return /* html */`
         <div class="card border-0 position-relative">
@@ -20,7 +20,7 @@ export const regularCardComponent = ({
               </h5>
 
               <em class="card__units text-black-50 mb-2 d-block fw-normal fst-normal">${value}${type} ($${totalPerUnit}${type})</em>
-              <button class="card__show btn btn-lg btn-primary w-100 text-white fw-normal" data-id="${id}" data-bs-toggle="modal" data-bs-target="#detailModal">Agregar</button>
+              <button class="card__show btn btn-lg ${localProduct?'btn-secondary':'btn-primary'} w-100 text-white fw-normal" data-id="${id}" data-bs-toggle="modal" data-bs-target="#detailModal">${localProduct?'Ver Mas':'Agregar'}</button>
             </div>
           </div>
     `;

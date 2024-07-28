@@ -1,8 +1,9 @@
 /* Crea la estructura base para las tarjetas, retornandola como html.*/
-export const cardContainerComponent = ({
+export const cardsContainerTemplate = ({
     title = null,
     data = [],
-    cardComponent
+    cardComponent,
+    localData = new Map()
 }) =>{        
     let html = '';
 
@@ -11,9 +12,11 @@ export const cardContainerComponent = ({
         html+=/* html */
         `<h2 class="main__subtitle fw-bold fs-4 mt-2 mb-3">${title}</h2>`;
     }    
-    html += /* html */`<article class="card__container">`
-    
-    data.forEach(card => html+= cardComponent(card));
+    html += /* html */`<article class="card__container">`    
+    data.forEach(card => {
+        const localProduct =localData.get(card.id);
+        html+= cardComponent(card,localProduct)
+    });
 
     html+= /* html */`
             </article> 

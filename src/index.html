@@ -14,7 +14,7 @@
           <span class="badge text-bg-secondary cart__amount p-0 bg-primary fs-6 mx-1">15</span>
         </button>
         <div class="location dropdown-center mx-auto ">
-          <button type="button" class="location__btn btn btn-secondary w-100 mt-2 bg-white border-0 text-black fw-bold fs-6 d-flex align-items-baseline" data-bs-toggle="modal" data-bs-target="#locationModal">
+          <button type="button" class="location__city location__btn btn btn-secondary w-100 mt-2 bg-white border-0 text-black fw-bold fs-6 d-flex align-items-baseline" data-bs-toggle="modal" data-bs-target="#locationModal">
             México City Marriott
             <i class="bi bi-chevron-down mx-2 text-danger fw-bold fs-5"></i>
           </button>          
@@ -35,24 +35,16 @@
       <div class="offcanvas offcanvas-end" tabindex="-1" id="cartModal" aria-labelledby="cartModalLabel">
         <div class="offcanvas-header py-4 shadow-sm">
           <h5 class="offcanvas-title fs-6 row" id="cartModalLabel">
-            <em class="fst-normal text-black-50 text-nowrap col-5">Entregar en:</em><strong class="text-truncate col-6 px-0">Mexico City Marriott...</strong>
+            <em class="fst-normal text-black-50 text-nowrap col-5">Entregar en:</em><strong class="text-truncate col-6 px-0 location__city">Mexico City Marriott...</strong>
           </h5>
           <button type="button" class="btn-close rounded-circle p-2 bg-dark position-relative text-white" data-bs-dismiss="offcanvas" aria-label="Close">
             <i class="bi bi-x-lg position-absolute top-50 start-50 translate-middle fs-6"></i>
           </button> 
         </div>
-        <div class="offcanvas-body p-0">
-            <div id="emptyCart" class="d-flex d-none justify-content-center flex-wrap">
-              <img class="empty__img mt-5" src="" alt="Family Values Shopping" style="width: 250px; height: 193px;">
-              <p class="fs-3 text-center fw-bold py-2">
-                Tu canasta está vacía
-              </p>
-              <button type="button" class="btn btn-primary text-white" data-bs-dismiss="offcanvas" aria-label="Close">
-                Agregar productos
-              </button> 
-          </div>
+        <div class=" offcanvas-body p-0">
+            
           <!-- Mini Cards -->
-          <div id="cart" class="card__conteiner card__container--mini">
+          <div class="cart__container card__conteiner card__container--mini">
             <!-- Cards -->
             
           </div>
@@ -61,9 +53,9 @@
               Vaciar canasta
             </button>
             <button class="pay__submit btn btn-lg btn-primary text-white d-flex justify-content-between px-3 align-items-center col-8 col-lg-7 col-12" data-bs-toggle="offcanvas" data-bs-target="#paymentOffcanvas" aria-controls="paymentOffcanvas">
-              <span class="badge " style="background-color: #2E7E78;">15</span>
+              <span class="badge cart__amount" style="background-color: #2E7E78;">15</span>
               <span class="fw-bold">Ir a pagar</span>              
-              <span class="fw-light text-white">$227.48</span>
+              <span class="fw-light text-white cart__total">$227.48</span>
             </button>
           </div>
         </div>
@@ -87,7 +79,7 @@
                   Agregar productos
                 </button> 
             </div>
-            <div class="card w-100 d-flex flex-row">
+            <div class="cart__container card w-100 d-flex flex-column">
               <div class="card-body px-1 col-9 d-flex flex-wrap align-items-center">
                 <div class="card__content col-8 d-flex flex-wrap align-items-center justify-content-end align-content-center">
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWN5g9vUSIe__oKuucM1Yj_t2O4y7ZsWCZ8w&s" class="col-4" alt="card image">
@@ -102,7 +94,7 @@
               </div>
             </div>
           </div>
-          <form class="pay d-flex flex-column mt-3">
+          <form class="pay d-flex flex-column mt-3 col-lg-5">
             <div class="mb-3">
               <label for="email" class="form-label">
                 Correo Electrónico
@@ -139,7 +131,7 @@
               <input type="text" class="form-control shadow-sm" id="card-name">
             </div>
             <button class="pay__submit btn btn-primary text-white mt-3" type="button"  data-bs-toggle="modal" data-bs-target="#peymentModal" >
-              Pagar <strong class="fw-normal">$227.48</strong>
+              Pagar <strong class="fw-normal cart__total">$227.48</strong>
             </button>
             
           </form>
@@ -181,7 +173,7 @@
               </p>
             </div>
             <div class="modal-footer border-0 pt-md-0">
-              <form class="w-100">                
+              <form class="w-100 location__form">
                 <div class="input-group mb-3 border rounded border-1 py-1 mb-1">                  
                   <label for="location" class="input-group-text bg-white border-0" >
                     <i class="bi bi-geo-alt"></i>

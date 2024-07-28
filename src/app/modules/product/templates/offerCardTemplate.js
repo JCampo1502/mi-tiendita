@@ -1,12 +1,12 @@
 /* Retorna plantilla de la tarjeta en oferta.*/
-export const offerCardComponent = ({
+export const offerCardTemplate = ({
     id,
     name,
     image,
     type,
     price,
     discount
-})=>{
+},localProduct)=>{        
     const priceWithDiscount = (price -(price / 100 * discount )).toFixed(2);
     return /* html */`
     <div class="card border-0 position-relative">
@@ -26,7 +26,7 @@ export const offerCardComponent = ({
             <h5 class="card__name card-title fs-6 fw-normal mb-5">
                 ${name}
             </h5>
-            <button class="card__show btn btn-lg btn-primary w-100 text-white fw-nor,al" data-id="${id}"  data-bs-toggle="modal" data-bs-target="#detailModal">Agregar</button>
+            <button class="card__show btn btn-lg ${localProduct?'btn-secondary':'btn-primary'} w-100 text-white fw-nor,al" data-id="${id}"  data-bs-toggle="modal" data-bs-target="#detailModal">${localProduct?'Ver Mas':'Agregar'}</button>
         </div>
     </div>
     `;
