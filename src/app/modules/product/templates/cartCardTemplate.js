@@ -40,4 +40,4 @@ export const cartCardTemplate = ({
               </div>
             </div>
     `;
-}
+};

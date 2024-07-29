@@ -1,194 +1,122 @@
 import { getProducts, getProductById, getProductsByCategory } from "./getProducts";
-import { addProductToStorage,addProductStorageObserver, getStorageProductById, getStorageProducts, removeStoreProductById, cleanUpStorage } from "./productStorage";
+import { getStorageProductById, getStorageProducts} from "./productStorage";
 
 /* Templates */
 import { cardsContainerTemplate } from "./templates/cardsContainerTemplate";
-import { offerCardTemplate } from "./templates/offerCardTemplate";
 import { regularCardTemplate } from "./templates/regularCardTemplate";
 import { cardDetailTemplate } from "./templates/cardDetailTemplate";
+import {cartCardTemplate} from "./templates/cartCardTemplate";
+
 /* Helpers */
 import { counter } from "../helpers/counter";
 import { isValidElement } from "../helpers/isValidElement";
+import { categoryOptions } from "../../constans";
 
-const isValidBtn = (element,classes)=>isValidElement(element,'BUTTON',classes);
+// Modal Bootstrap
+import {Modal} from 'bootstrap'
+import { emptyCart } from "./templates/emptyCart";
 
-const updateValue = (element,className)=>{    
-    const targetElement = element.querySelector(`.${className}`);
-    const value = parseFloat(targetElement.dataset.value);
-    targetElement.textContent = value * amount.count();;
-}
 
-let amount = null;
-
-const options = {
-    'offer':{
-        title : 'Ofertas',
-        component: offerCardTemplate
-    },
-    'popular':{
-        title : 'Los más populares',
-        component: regularCardTemplate
+const isValidBtn = (fn)=> ({element,nodeName,classes})=>{     
+    if(isValidElement(element,nodeName,classes)){
+        return fn(element)
     }
+    return null;
 }
 
-// Cargar detalle del producto
-const showDetail = async (element, modal)=>{
+// Cargar detalle del producto.
+const showProductDetail = isValidBtn(async (element)=>{
     const id = element?.dataset?.id;
-    if(!isValidBtn(element,['card__show']) || !id) return;    
-    await loadProductDetail(modal,id);
-}
-
-// Mostrar detalle del producto
-const loadProductDetail = async(modal,id)=>{    
-    try {
-        const product = await getProductById(id);
-        const localAmount = getStorageProductById(id);
-
-        const relatedProducts = (
-            await getProductsByCategory(product.category)
-        ).filter(p => p.name != product.name);
-        
-        amount = counter(localAmount?localAmount.amount:product.amount);
-        modal.innerHTML = cardDetailTemplate(product);
-        modal.innerHTML += cardsContainerTemplate({
-            title:"Productos relacionados",
-            data: relatedProducts,
-            cardComponent:regularCardTemplate,
-            localData:getStorageProducts()
-        }).replace(/data-bs-toggle="modal" data-bs-target="#detailModal"/g, '');
-    } catch (error) {
-        console.error("Error loading product details:", error);
-    }
-}
-
-// Cargar productos en el contenedor
-const loadProducts = async(container)=>{
-    try {        
-        const products = await getProducts();
-        container.innerHTML = '';
-        for (const category in products) {
-            const card = options[category];
-            if (card) {                
-                container.innerHTML += cardsContainerTemplate({
-                    title:card.title,
-                    cardComponent:card.component,
-                    data:products[category],
-                    localData:getStorageProducts()
-                });
-            }        
+    return async(modal)=>{    
+        try {
+            const product = await getProductById(id);
+            const localProduct = getStorageProductById(id);
+            const localAmount = localProduct?localProduct.amount:product.amount;
+            const productDetailTemplate = cardDetailTemplate(product);
+            const containerOfRelatedProducts = cardsContainerTemplate({
+                title:"Productos relacionados",
+                data: (await getProductsByCategory(product.category)).filter(p => p.name != product.name),
+                cardComponent:regularCardTemplate,
+                localData:getStorageProducts()
+            }).replace(/data-bs-toggle="modal" data-bs-target="#detailModal"/g, '');
+            
+            modal.innerHTML = productDetailTemplate + containerOfRelatedProducts;
+            return counter(localAmount);
+        } catch (error) {
+            console.error("Error loading product details:", error);
         }
+    }
+}) 
+
+// Cargar Productos por categoria.
+export const loadProductsByCategory = async(container)=>{
+    try {        
+        container = container.querySelector('.cards__container')
+        const products = await getProducts();
+        const storedProducts = getStorageProducts();
+        container.innerHTML = Object.entries(products).map(([category, data])=>{
+            const card = categoryOptions[category];
+            return cardsContainerTemplate({
+                title:card.title,
+                cardComponent:card.component,
+                data,
+                localData:storedProducts
+            })
+        }).join('');        
+        return (modal)=>async e=>(await showProductDetail({
+            element:e.target,
+            nodeName:'BUTTON',
+            classes: ['card__show']
+        }))?.(modal);
     } catch (error) {
         console.error("Error loading products:", error);
-    }
-    
+        return null;
+    }    
 }
 
-const determineAction = (element)=>{
-    switch (true) {
-        case isValidBtn(element,['card__btn--plus']):
-        case isValidElement(element,'I',['bi-plus-lg']) :
-            return 'increment';
-        case isValidBtn(element,['card__btn--less']):
-        case isValidElement(element,'I',['bi-dash-lg']):
-            return 'decrement'
-        case isValidBtn(element,['card__remove']):
-            return 'remove';
-        case isValidBtn(element,['card__add']):
-            return 'add'
+// Cargar productos al carrito
+export const loadCartCards = (cartContainers)=>async(localProducts= new Map())=>{
+    const keys = Array.from(localProducts.keys()).filter(id => id);
+    let html = '';
+    if(!keys.length){
+        html+= emptyCart();
+    }else{
+        const products = await Promise.all(keys.map(id => getProductById(id)));
+        products.forEach(product => {
+            const localProduct = localProducts.get(product.id);      
+            html+= cartCardTemplate(product, localProduct)
+        });
     }
+    cartContainers.forEach(element => element.innerHTML = html);
 }
 
-// Exportar la función principal para mostrar productos
-export const Showproducts = (container, modal, cleanBtn, cartContainers)=>{
-    loadProducts(container);
+//actualizar la cantidad y el total
+export const loadQuantityAndTotal =(cartAmount,cartTotal)=>async(localProducts = new Map())=>{
+    localProducts = Array.from(localProducts).filter(([id]) =>id);
+    const products = await Promise.all(localProducts.map(([id]) => getProductById(id)));
 
-    cleanBtn.addEventListener('click',()=>{
-        cleanUpStorage();
-        loadProducts(container);
-    })
-    container.addEventListener('click',(e)=>{
+    let totalAmount = 0;
+    let peyment = 0;
 
-        showDetail(e.target,modal)
-    })
+    localProducts.forEach(([id,{amount:localAmount}])=>{
+        let {price, discount } = products.find(p => p.id == id);
+        discount = price * (discount/100);
+        peyment     += localAmount * (price - discount);
+        totalAmount += localAmount;
+    });        
 
-    cartContainers.forEach(container => container.addEventListener('click', async(e)=>{
-        const element = e?.target;
-        let targetElement = null;
-        switch (true) {
-            case isValidBtn(element,['card__btn--plus']):
-            case isValidBtn(element,['card__btn--less']):
-                targetElement = element.parentElement;
-                break;
-            case isValidElement(element,'I',['bi-plus-lg']) :
-            case isValidElement(element,'I',['bi-dash-lg']):
-                targetElement = element.parentElement.parentElement;
-                break;
-            default:
-                return;
-        }
+    cartAmount.forEach(element => element.textContent = totalAmount);
+    cartTotal.forEach(element => element.textContent = `$${peyment.toFixed(2)}`);
+}
 
-        const id = targetElement?.dataset?.id;
-        if(!id)return;        
-        const data = getStorageProductById(id);                
-        let amount = data.amount;        
-        if(!amount)return;
-        switch (true) {
-            case isValidBtn(element,['card__btn--plus']):
-            case isValidElement(element,'I',['bi-plus-lg']) :
-                ++amount
-                break;
-            case isValidBtn(element,['card__btn--less']):
-            case isValidElement(element,'I',['bi-dash-lg']):
-                if(amount-1 >=1)--amount;
-                break;
-            default:
-                return;
-        }
 
-        addProductToStorage({id, data: {...data,amount}})
-    }));
-
-    modal.addEventListener('click',async(e)=>{        
-        const element = e?.target;      
-        const id = element?.dataset?.id ?? null
-
-        switch (determineAction(element)) {
-            case 'increment':
-                amount?.increment();
-                updateValue(modal,'card__value');
-                break;
-            case 'decrement':
-                amount?.decrement();
-                updateValue(modal,'card__value');
-                break;
-            case 'remove':
-                removeStoreProductById(id);
-                amount.reset();            
-                await showDetail(element,modal);
-                loadProducts(container);
-                break;
-            case 'add':
-                const data = {
-                    amount:amount.count()
-                }
-                const select = modal.querySelector('#ripeness');
-
-                if(select){
-                    data['ripeness'] = select.value;
-                }
-
-                addProductToStorage({
-                    id:element.dataset.id,
-                    data
-                })
-                
-                amount.reset();            
-                await showDetail(element,modal);
-                loadProducts(container);
-                break;
-            default:
-                showDetail(element,modal);                
-                break;
-        }
-    })
+export const updateLocation = (locationNames,locationForm) => (storageName, modalId)=>{
+    console.log(storageName,modalId);
+    const newLocation = localStorage.getItem(storageName);
+    if(!newLocation){
+        const modal = new Modal(document.getElementById(modalId));
+        modal.show();        
+    }
+    locationNames.forEach(element => element.textContent = newLocation);
+    locationForm.location.value = newLocation;
 }
